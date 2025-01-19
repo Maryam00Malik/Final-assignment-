@@ -123,15 +123,25 @@ int main() {
 Time Complexity The time complexity of the Stack and Queue operations is as follows:
 
 Stack:
+
 Push: O(1)
+
 Pop: O(1)
+
 Peek: O(1)
+
 Is Empty: O(1)
+
 Queue:
+
 Enqueue: O(1)
+
 Dequeue: O(1)
+
 Peek: O(1)
+
 Is Empty: O(1)
+
 LinkedIn Post
 
 I'm excited to share my recent assignment on implementing a Stack and Queue data structure using a Linked List in C++!
