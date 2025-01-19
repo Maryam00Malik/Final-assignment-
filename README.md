@@ -1,19 +1,15 @@
 # Final-assignment-
 #include <iostream>
-
-// Node class
-class Node {
-public:
+using namespace std;
+struct Node {
     int data;
     Node* next;
 
-    Node(int value) {
-        data = value;
-        next = nullptr;
+    Node(int data) {
+        this->data = data;
+        this->next = nullptr;
     }
 };
-
-// Stack class
 class Stack {
 private:
     Node* top;
@@ -23,42 +19,36 @@ public:
         top = nullptr;
     }
 
-    // Push element onto the stack
-    void push(int value) {
-        Node* newNode = new Node(value);
+    void push(int data) {
+        Node* newNode = new Node(data);
         newNode->next = top;
         top = newNode;
     }
 
-    // Pop element from the stack
     int pop() {
         if (top == nullptr) {
-            std::cout << "Stack is empty!" << std::endl;
+            cout << "Stack is empty" << endl;
             return -1;
         }
-        int value = top->data;
+        int poppedData = top->data;
         Node* temp = top;
         top = top->next;
         delete temp;
-        return value;
+        return poppedData;
     }
 
-    // Peek at the top element of the stack
+    bool isEmpty() {
+        return top == nullptr;
+    }
+
     int peek() {
         if (top == nullptr) {
-            std::cout << "Stack is empty!" << std::endl;
+            cout << "Stack is empty" << endl;
             return -1;
         }
         return top->data;
     }
-
-    // Check if the stack is empty
-    bool isEmpty() {
-        return top == nullptr;
-    }
 };
-
-// Queue class
 class Queue {
 private:
     Node* front;
@@ -66,79 +56,70 @@ private:
 
 public:
     Queue() {
-        front = nullptr;
-        rear = nullptr;
+        front = rear = nullptr;
     }
 
-    // Enqueue element into the queue
-    void enqueue(int value) {
-        Node* newNode = new Node(value);
+    void enqueue(int data) {
+        Node* newNode = new Node(data);
         if (rear == nullptr) {
             front = rear = newNode;
-        } else {
-            rear->next = newNode;
-            rear = newNode;
+            return;
         }
+        rear->next = newNode;
+        rear = newNode;
     }
 
-    // Dequeue element from the queue
     int dequeue() {
         if (front == nullptr) {
-            std::cout << "Queue is empty!" << std::endl;
+            cout << "Queue is empty" << endl;
             return -1;
         }
-        int value = front->data;
+        int dequeuedData = front->data;
         Node* temp = front;
         front = front->next;
+
         if (front == nullptr) {
             rear = nullptr;
         }
         delete temp;
-        return value;
+        return dequeuedData;
     }
 
-    // Peek at the front element of the queue
+    bool isEmpty() {
+        return front == nullptr;
+    }
+
     int peek() {
         if (front == nullptr) {
-            std::cout << "Queue is empty!" << std::endl;
+            cout << "Queue is empty" << endl;
             return -1;
         }
         return front->data;
     }
-
-    // Check if the queue is empty
-    bool isEmpty() {
-        return front == nullptr;
-    }
 };
-
 int main() {
-    // Create a stack and queue
     Stack stack;
+    stack.push(86);
+    stack.push(45);
+    stack.push(28);
+    cout << "Stack Peek: " << stack.peek() << endl;
+    cout << "Stack Pop: " << stack.pop() << endl;
+    cout << "Stack Pop: " << stack.pop() << endl;
+    cout << "Stack IsEmpty: " << (stack.isEmpty() ? "true" : "false") << endl;
     Queue queue;
-
-    // Push elements onto the stack
-    stack.push(1);
-    stack.push(2);
-    stack.push(3);
-
-    // Enqueue elements into the queue
-    queue.enqueue(1);
-    queue.enqueue(2);
-    queue.enqueue(3);
-
-    // Pop elements from the stack
-    std::cout << "Popped from stack: " << stack.pop() << std::endl;
-    std::cout << "Popped from stack: " << stack.pop() << std::endl;
-    std::cout << "Popped from stack: " << stack.pop() << std::endl;
-
-    // Dequeue elements from the queue
-    std::cout << "Dequeued from queue: " << queue.dequeue() << std::endl;
-    std::cout << "Dequeued from queue: " << queue.dequeue() << std::endl;
-    std::cout << "Dequeued from queue: " << queue.dequeue() << std::endl;
+    queue.enqueue(47);
+    queue.enqueue(78);
+    queue.enqueue(50);
+    cout << "Queue Peek: " << queue.peek() << endl;
+    cout << "Queue Dequeue: " << queue.dequeue() << endl;
+    cout << "Queue Dequeue: " << queue.dequeue() << endl;
+    cout << "Queue IsEmpty: " << (queue.isEmpty() ? "true" : "false") << endl;
 
     return 0;
 }
+        
+            
+
 Time Complexity The time complexity of the Stack and Queue operations is as follows:
 
 Stack:
